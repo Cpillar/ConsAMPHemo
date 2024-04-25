@@ -53,4 +53,3 @@ python3 evaluate.py
 Dataset/S_i/model
 ```
 
-# ConsAMPHemo
