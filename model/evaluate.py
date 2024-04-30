@@ -1,20 +1,17 @@
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, roc_auc_score, confusion_matrix, classification_report
 import csv
 def aaindex(sequences):
-# 打开CSV文件
+
   with open('aaindex_feature.csv', 'r') as file:
       csv_reader = csv.reader(file)
 
-      # 跳过标题行
       header = next(csv_reader)
 
-      # 创建一个空字典来存储数据
       data_dict = {}
 
-      # 遍历CSV文件中的每一行
       for row in csv_reader:
-          name = row[0]  # 第一列是名称
-          values = [float(value) for value in row[1:]]  # 后面的列为数值，转换为浮点数
+          name = row[0]  
+          values = [float(value) for value in row[1:]]  
 
           data_dict[name] = values
 
@@ -146,22 +143,6 @@ def genData_typeB(file):
       print(current_pep.size())
       pep_codes.append(torch.tensor(current_pep))
 
-    # for pep in lines:
-    #     pep, label = pep.split(",")
-    #     labels.append(int(label))
-    #     input_seq = ' '.join(pep)
-    #     # input_seq = input_seq + ' [PAD]'*(max_seq_len-len(pep))
-    #     input_seq = re.sub(r"[UZOB]", "X", input_seq)
-    #     pep_seq.append(input_seq)
-    #     if not len(pep) > max_len:
-    #         current_pep = []
-    #         for aa in pep:
-    #             current_pep.append(aa_dict[aa])
-    #         pep_codes.append(torch.tensor(current_pep))
-    #         #pep2label.append((current_pep,torch.tensor(int(label))))
-    #     else:
-    #         long_pep_counter += 1
-    # print("length > 63:", long_pep_counter)
 
     data = rnn_utils.pad_sequence(pep_codes, batch_first=True)
     print(data.size())
@@ -296,18 +277,7 @@ class newModel(nn.Module):
         # output= pep.reshape(-1,1024)
 
         return self.block2(output)
-# class ContrastiveLoss(torch.nn.Module):
-#     def __init__(self, margin=2.0):
-#         super(ContrastiveLoss, self).__init__()
-#         self.margin = margin
 
-#     def forward(self, output1, output2, label):
-#         # euclidean_distance: [128]
-#         euclidean_distance = F.pairwise_distance(output1, output2)
-#         loss_contrastive = torch.mean((1 - label) * torch.pow(euclidean_distance, 2) +  # calmp夹断用法
-#                                       (label) * torch.pow(torch.clamp(self.margin - euclidean_distance, min=0.0), 2))
-
-#         return loss_contrastive
 class MultiContrastiveLoss(nn.Module):
     def __init__(self, margin=2.0):
         super(MultiContrastiveLoss, self).__init__()
