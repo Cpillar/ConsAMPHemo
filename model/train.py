@@ -536,18 +536,9 @@ for num_model in range(1):
         net.train()
 
         for seq1, seq2, label, label1, label2, pep1, pep2 in train_iter_cont:
-            '''
-            seq1 和seq2组成一对对比组，
-            '''
 
 
             for i in range(len(pep1)):
-                '''
-                这个循环用来干嘛的？pep用于索引？
-                为什么要把一堆一摸一样的cat在一起？
-                有多长cat多长？
-
-                '''
 
                 # print(pep1)
                 # if i == 0:
@@ -619,12 +610,7 @@ for num_model in range(1):
         results += f'\ttrain_acc: {train_acc:.4f}, test_acc: {colored(test_acc, "red")}, time: {time.time() - t0:.2f}'
         print(results)
 
-
-        if test_acc > best_acc:
-            best_acc = test_acc
-
-
-            torch.save({"best_acc": best_acc,"metric":metric1, "model": net.state_dict()}, f'{num_model}_without_aaindex.pl')
-            print(f"best_acc: {best_acc},metric:{metric1}")
+        torch.save({"best_acc": best_acc,"metric":metric1, "model": net.state_dict()}, f'{num_model}.pl')
+        print(f"best_acc: {best_acc},metric:{metric1}")
 
 
