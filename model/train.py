@@ -2,7 +2,7 @@ from sklearn.metrics import accuracy_score, precision_recall_fscore_support, roc
 
 import csv
 def aaindex(sequences):
-# 打开CSV文件
+
   with open('aaindex_feature.csv', 'r') as file:
       csv_reader = csv.reader(file)
 
@@ -11,8 +11,8 @@ def aaindex(sequences):
 
       data_dict = {}
       for row in csv_reader:
-          name = row[0]  # 第一列是名称
-          values = [float(value) for value in row[1:]]  # 后面的列为数值，转换为浮点数
+          name = row[0] 
+          values = [float(value) for value in row[1:]] 
 
           data_dict[name] = values
 
@@ -268,9 +268,7 @@ class MultiContrastiveLoss(nn.Module):
         # 计算相似度矩阵
         similarity_matrix = torch.matmul(output1, output2.t())
 
-        # 使用label信息创建mask矩阵
-        # mask1 = torch.eye(output1.size(0)).bool().to(device)
-        # mask2 = torch.eye(output2.size(0)).bool().to(device)
+
         pos_mask = (label1.unsqueeze(1) == label2.unsqueeze(0)).bool()
         neg_mask = ~(pos_mask)
         # print(label1,label2,label1.unsqueeze(1) ,label2.unsqueeze(0))
