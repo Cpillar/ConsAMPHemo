@@ -24,6 +24,12 @@ the hemolytic activities of AMPs.The first stage is a binary classification of A
 ![workflow](IMG/workflow.png)
 
 
+## Linux and Windows
+Please make sure that cuda is available
+
+```
+pip install -r requirements.txt
+```
 
 ## Model
 
