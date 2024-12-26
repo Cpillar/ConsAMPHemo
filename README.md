@@ -25,7 +25,11 @@ the hemolytic activities of AMPs.The first stage is a binary classification of A
 
 
 ## Linux and Windows
-Please make sure that cuda is available
+Please make sure that cuda is available，python version is 3.10
+```
+pip install pytorch Transformer scikit-learn
+```
+or you can run the following command
 
 ```
 pip install -r requirements.txt
